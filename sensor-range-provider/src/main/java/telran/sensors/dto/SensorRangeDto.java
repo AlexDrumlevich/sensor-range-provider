@@ -1,7 +1,7 @@
 package telran.sensors.dto;
 
+import jakarta.validation.constraints.NotNull;
 
-
-public record SensorRangeDto(String id, Double minValue, Double maxValue) {
+public record SensorRangeDto(@NotNull String id, Double minValue, Double maxValue) {
 
 }

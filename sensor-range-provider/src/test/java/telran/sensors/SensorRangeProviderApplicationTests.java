@@ -83,12 +83,13 @@ class SensorRangeProviderApplicationTests {
 		
 		String response = mockMvc.perform(get("http://localhost:8080/sensor/1")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertEquals(expectedSensorRangeString, response);
+//		
+//		String response2 = mockMvc.perform(get("http://localhost:8080/sensor/null")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+//		assertEquals(expectedSensorRangeString, response2);	
+	
+		String badRequeExpected = mockMvc.perform(get("http://localhost:8080/sensor/0")).andExpect(status().isBadRequest()).andReturn().getResponse().getContentAsString(); 
 		
-		
-		assertThrowsExactly(
-				NotFoundException.class, 
-				() -> mockMvc.perform(get("http://localhost:8080/sensor/0"))
-				);
+		assertEquals(badRequeExpected, "Sensor id 0 not found");
 		
 		
 	}
